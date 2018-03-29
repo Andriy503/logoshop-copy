@@ -11,7 +11,13 @@
 	<a href="index.php?go=news"><i class="large material-icons">sentiment_very_satisfied</i>Новинки</a>
 	<a href="index.php?go=liders"><i class="large material-icons">insert_chart</i>В тренді</a>
 	<a href="index.php?go=sale"><i class="large material-icons">local_mall</i>Акції</a>
-	<a href="cart.php?action=oneclick" class="basket_icon"><i class="large material-icons">shopping_cart</i>Корзина пуста</a>
+ 	<?php 
+		if($_GET['action']){
+			$class_action = "action_basket";
+		}
+   	 ?>
+	
+	<a href="cart.php?action=oneclick" class="basket_icon" id=<?php echo $class_action;?> ><i class="large material-icons">shopping_cart</i>Корзина пуста</a>
 	<!-- local_grocery_store // кошик -->
 <div id="search">
 	<form method="get" action="index.php" id="search_form">

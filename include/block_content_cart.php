@@ -30,7 +30,7 @@
 							</ul>
 						</div>
 						<p>крок 1 із 3</p>
-						<a href="cart.php?action=clear">Видалити</a>
+						<a href="cart.php?action=clear" class="delete_all">Видалити</a>
 					</div>
 				';
 				// *mini_nav

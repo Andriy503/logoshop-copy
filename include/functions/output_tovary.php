@@ -129,6 +129,9 @@ class showContents{
 			$url_parce = parse_url($_SERVER['REQUEST_URI']);
 			$tt = implode("", $url_parce);
 			if(strlen($tt) < 19){
+				if($tt == "/"){
+					$id = "main_page_nav";
+				}
 				echo "<ul class='nav_pages'>";
 				// ************
 					$url_parce = parse_url($_SERVER['REQUEST_URI']);
@@ -291,6 +294,9 @@ class showContentsList{
 			$url_parce = parse_url($_SERVER['REQUEST_URI']);
 			$tt = implode("", $url_parce);
 			if(strlen($tt) < 19){
+				if($tt == "/"){
+					$id = "main_page_nav";
+				}
 				echo "<ul class='nav_pages'>";
 		// ************
 				$url_parce = parse_url($_SERVER['REQUEST_URI']);
