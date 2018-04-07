@@ -2,6 +2,16 @@
 // перевірка на авторизацію користувача
 	session_start();
 	include("include/functions/db_connect.php");
+
+	if(isset($_POST['submitdata'])) {
+		$_SESSION['order_delivery'] = $_POST['order_delivery'];
+		$_SESSION['order_fio'] = $_POST['order_fio'];
+		$_SESSION['order_phone'] = $_POST['order_phone'];
+		$_SESSION['order_address'] = $_POST['order_address'];
+		$_SESSION['order_note'] = $_POST['order_note'];
+
+		header('Location: cart.php?action=completion');
+	}
 	
 ?>
 

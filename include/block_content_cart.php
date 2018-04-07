@@ -1,18 +1,19 @@
 <?php 
-
+// cart.php?id='.$row['id'].'&action=delete
 	if(isset($_GET['action'])){
 
-		if($_GET['action'] == 'delete') {
-			$id = $_GET['id'];
-			$query = Connect::$connect->prepare(" DELETE FROM `basket` WHERE `ip_user` = '".$_SERVER['REMOTE_ADDR']."' AND `id` = $id ");
-			$query->execute();
-		}
+		// видалення товара із корзини (зробив асинхронно)
+		// if($_GET['action'] == 'delete') {
+		// 	$id = $_GET['id'];
+		// 	$query = Connect::$connect->prepare(" DELETE FROM `basket` WHERE `ip_user` = '".$_SERVER['REMOTE_ADDR']."' AND `id` = $id ");
+		// 	$query->execute();
+		// }
 
-		if($_GET['action'] == 'clear') {
-			$query = Connect::$connect->prepare(" DELETE FROM `basket` WHERE `ip_user` = '".$_SERVER['REMOTE_ADDR']."' ");
-			$query->execute();
-		}
-		
+		// видалення всіх товарів із корзини (зробив асинхронно)
+		// if($_GET['action'] == 'clear') {
+		// 	$query = Connect::$connect->prepare(" DELETE FROM `basket` WHERE `ip_user` = '".$_SERVER['REMOTE_ADDR']."' ");
+		// 	$query->execute();
+		// }
 
 		$action = $_GET['action'];
 		switch($action){
@@ -30,7 +31,7 @@
 							</ul>
 						</div>
 						<p>крок 1 із 3</p>
-						<a href="cart.php?action=clear" class="delete_all">Видалити</a>
+						<a href="" class="delete_all"> Видалити</a>
 					</div>
 				';
 				// *mini_nav
@@ -53,6 +54,7 @@
 				while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 					$int = $row['price_tovary'] * $row['count_tovary'];
 					$all_price = $all_price + $int;
+					$_SESSION['all_sum_price'] = $all_price;
 
 					if ($row['image_src'] != "" && file_exists('images/tovary/'.$row["image_src"])){
 						$img_path = 'images/tovary/'.$row["image_src"];
@@ -89,8 +91,8 @@
 							</ul>
 						</div>
 
-							<div class="price_product"><h5><span class="span_sount">'.$row['count_tovary'].'</span> x <span>'.$row['price_tovary'].' грн</span></h5><p>'.$row['price_tovary'].' грн</p></div>
-							<div class="delete_cart"><a href="cart.php?id='.$row['id'].'&action=delete"><img src="images/delete_tov.png" width="30"/></a></div>
+							<div class="price_product"><h5><span class="span_sount">'.$row['count_tovary'].'</span> x <span>'.$row['price_tovary'].' грн</span></h5><p>'.($row['price_tovary'] * $row['count_tovary']).' грн</p></div>
+							<div class="delete_cart" tid_id='.$row['id'].'><a href=""><img src="images/delete_tov.png" width="30"/></a></div>
 
 							<div id="bottom_cart_line"><img src="images/bottom_line.png"></div>
 						</div>
@@ -115,18 +117,51 @@
 					<div id="block_step">
 						<div id="name_step">
 							<ul>
-								<li><a href="">1. Корзина товарів</a></li>
+								<li><a href="cart.php?action=oneclick">1. Корзина товарів</a></li>
 								<li><span>&rarr;</span></li>
-								<li><a class="active" href="">2. Контактна інформація</a></li>
+								<li><a class="active">2. Контактна інформація</a></li>
 								<li><span>&rarr;</span></li>
-								<li><a href="">3. Завершення</a></li>
+								<li><a>3. Завершення</a></li>
 							</ul>
 						</div>
-						<p>крок 1 із 3</p>
-						<a href="cart.php?action=clear">Видалити</a>
+						<p>крок 2 із 3</p>
 					</div>
 				';
 				// *mini_nav
+				if($_SESSION['order_delivery'] == 'Нова пошта') { $chck1 = "checked";}
+				if($_SESSION['order_delivery'] == 'Укр пошта') { $chck2 = "checked";}
+
+				echo '
+					<h3 class="order_title">Спосіб доставки</h3>
+					<form method="POST" id="form_order_delivery">
+						<ul id="info_radio">
+							<li>
+								<label><input type="radio" name="order_delivery" class="order_delivery" id="order_delivery1" value="Нова пошта" '.$chck1.' > Нова пошта<label>
+							</li>
+							<li>
+								<label><input type="radio" name="order_delivery" class="order_delivery" id="order_delivery2" value="Укр пошта" '.$chck2.'> Укр пошта<label>
+							</li>
+						</ul>
+						<h3 class="title_info_order">Інформація для доставки</h3>
+						<img src="images/bottom_line.png">
+						<ul id="info_order">
+				';			
+
+					if($_SESSION['auth'] != "yes") {
+						echo '
+							<li><label for="order_fio"><span>*</span>ПІБ</label><input type="text" name="order_fio" id="order_fio" value="'.$_SESSION['order_fio'].'" /><span class="order_span_style">Приклад: Іванов Іван Іванович</span></li>
+							<li><label for="order_phone"><span>*</span>Телефон</label><input type="text" name="order_phone" id="order_phone" value="'.$_SESSION['order_phone'].'" /><span class="order_span_style">Приклад: 0990066723</span></li>
+							<li><label for="order_address"><span>*</span>Адрес</label><input type="text" name="order_address" id="order_address" value="'.$_SESSION['order_address'].'" /><span class="order_span_style">Приклад: Місце доставки</span></li>
+						';
+					}
+
+					echo '
+							<li><label class="order_label_style" for="order_note">Додаток: </label><textarea name="order_note">'.$_SESSION['order_note'].'</textarea><span>Додаткова інформація про заказ</span></li>
+							</ul>
+							<p align="right"><input type="submit" name="submitdata" id="confirm_button_next" value="Далі"></p>
+							</form>
+						';
+
 				break;
 
 			case 'completion':
@@ -135,19 +170,45 @@
 					<div id="block_step">
 						<div id="name_step">
 							<ul>
-								<li><a href="">1. Корзина товарів</a></li>
+								<li><a href="cart.php?action=oneclick">1. Корзина товарів</a></li>
 								<li><span>&rarr;</span></li>
-								<li><a href="">2. Контактна інформація</a></li>
+								<li><a href="cart.php?action=confirm">2. Контактна інформація</a></li>
 								<li><span>&rarr;</span></li>
 								<li><a class="active" href="">3. Завершення</a></li>
 							</ul>
 						</div>
-						<p>крок 1 із 3</p>
-						<a href="cart.php?action=clear">Видалити</a>
+						<p>крок 3 із 3</p>
 					</div>
 				';
 			// *mini_nav
-				break;
+
+			echo "<h3 class='end_title'>Кінцева інформація</h3>";
+			if($_SESSION['auth'] == "yes") {
+				echo '
+					<ul id="info_list">
+						<li><strong>Спосіб доставки: </strong>'.$_SESSION['order_delivery'].'</li>
+						<li><strong>ФІО: </strong>'.$_SESSION['auth_name'].' '.$_SESSION['auth_surname'].'</li>
+						<li><strong>Номер телефону: </strong>'.$_SESSION['auth_phone'].'</li>
+						<li><strong>Адрес доставки: </strong>'.$_SESSION['auth_address'].'</li>
+						<li><strong>Додаток: </strong>'.$_SESSION['order_note'].'</li>
+					</ul>
+				';
+			} else {
+				echo '
+					<ul id="info_list">
+						<li><strong>Спосіб доставки: </strong>'.$_SESSION['order_delivery'].'</li>
+						<li><strong>ФІО: </strong>'.$_SESSION['order_fio'].'</li>
+						<li><strong>Номер телефону: </strong>'.$_SESSION['order_phone'].'</li>
+						<li><strong>Адрес доставки: </strong>'.$_SESSION['order_address'].'</li>
+						<li><strong>Додаток: </strong>'.$_SESSION['order_note'].'</li>
+					</ul>	
+				';
+			}
+
+			echo '<h2 class="itog_price2" align="right">Разом: <strong>'.$_SESSION['all_sum_price'].'</strong> грн</h2>';
+			echo '<p align="right"><input type="submit" name="paydata" id="confirm_button_pay" value="Оплатити"></p>';
+
+			break;
 		}
 	}
 ?>

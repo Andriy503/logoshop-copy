@@ -361,4 +361,9 @@ nav > a:hover {
 .basket_icon {
 	padding-left: 30px;
 	border-left: 1px solid #727272;
+	font-size: 20px;
+}
+
+.basket_icon > span {
+	color: #ff6702;
 }

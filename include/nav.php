@@ -17,7 +17,7 @@
 		}
    	 ?>
 	
-	<a href="cart.php?action=oneclick" class="basket_icon" id=<?php echo $class_action;?> ><i class="large material-icons">shopping_cart</i>Корзина пуста</a>
+	<a href="cart.php?action=oneclick" class="basket_icon" id=<?php echo $class_action;?> >Корзина пуста</a>
 	<!-- local_grocery_store // кошик -->
 <div id="search">
 	<form method="get" action="index.php" id="search_form">

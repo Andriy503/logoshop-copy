@@ -16,6 +16,8 @@ $(document).ready(function () {
 		speed:500
 	});
 
+	loadcart();
+
 	// Вигляд кнопок
 	$("#icon_grid").click(function() {
 		$("#block_tovar_list").hide();
@@ -104,6 +106,26 @@ $(document).ready(function () {
 		window.location.replace("http://logoshop.ua/setting.php");
 	});
 
+	$(".delete_cart").click(function() {
+		var id = $(this).attr("tid_id");
+		$.ajax({
+			type: "POST",
+			url: "/include/delete_tov_with_basket.php",
+			data: "id="+id,
+			dataType: "html",
+			cache: false
+		});
+	});
+
+	$(".delete_all").click(function() {
+		$.ajax({
+			type: "POST",
+			url: "/include/delete_all_with_basket.php",
+			dataType: "html",
+			cache: false
+		});
+	});
+
 
 	$("#search_form").validate({
 		rules: {
@@ -141,7 +163,84 @@ $(document).ready(function () {
 		}
 	});
 
+	// Перевірка одресу доставки форми на валідацію
+	$("#form_order_delivery").validate({
+		rules: {
+			order_fio: {
+				required: true,
+				minlength: 2,
+				maxlength: 40
+			},
+			order_phone: {
+				required: true,
+				minlength: 4,
+				maxlength: 14,
+				digits: true
+			},
+			order_address: {
+				required: true,
+				minlength: 2,
+				maxlength: 200,
+			}
+		},
+		messages: {
+			order_fio: {
+				required: "<span class='order_delivery'>Заповніть поле</span>",
+				maxlength: "<span class='order_delivery'>Поле задовге</span>",
+				minlength: "<span class='order_delivery'>Поле закоротке</span>"
+			},
+			order_phone: {
+				required: "<span class='order_delivery'>Заповніть поле</span>",
+				maxlength: "<span class='order_delivery'>Поле задовге</span>",
+				minlength: "<span class='order_delivery'>Поле закоротке</span>",
+				digits: "<span class='order_delivery'>Введіть коректно номер<span>"
+			},
+			order_address: {
+				required: "<span class='order_delivery'>Заповніть поле</span>",
+				maxlength: "<span class='order_delivery'>Поле задовге</span>",
+				minlength: "<span class='order_delivery'>Поле закоротке</span>"
+			}
+		}
+	});
+
+	// Асинхронне додавання товарів до корзини
+	$(".add_basket_list, .add_basket").click(function() {
+		var tid = $(this).attr("tid");
+		// alert(tid);
+		$.ajax({
+			type: "POST",
+			url: "/include/addtocart.php",
+			data: "id="+tid,
+			dataType: "html",
+			cache: false,
+			success: function(data) {
+				loadcart();
+			}
+		});
+	});
+
+	// Оновлеття тексту корзини nav
+	function loadcart() {
+		$.ajax({
+			type: "POST",
+			url: "/include/loadcart.php",
+			dataType: "html",
+			cache: false,
+			success: function(data) {
+				if(data == "error"){
+					$(".basket_icon").html(data);
+				}
+
+				if(data == "0") {
+					$(".basket_icon").html("<i class='large material-icons'>shopping_cart</i>Корзина пуста");
+				} else {
+					$(".basket_icon").html(data);
+				}
+				
+			}
+		});
+	}
 
 });
 
-
+// <i class="large material-icons">shopping_cart</i>

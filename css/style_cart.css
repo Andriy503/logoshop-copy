@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Suez+One');
+
 #block_step {
 	height: 70px;
 	border-bottom: 1px solid #DBDBDB;
@@ -77,6 +79,7 @@
 
 #block_list_cart {
 	height: 130px;
+	margin-bottom: 20px;
 }
 
 #block_list_cart > div {
@@ -176,8 +179,9 @@
 
 .itog_price {
 	padding-right: 20px;
-	padding-top: 50px;
-	font: 20px sans-serif;
+	font-size: 20px;
+	font-family: 'Suez One', serif;
+
 }
 
 .itog_price > strong {
@@ -213,4 +217,157 @@
 
 .gloory_smile {
 	padding-top: 10px;
+}
+
+#info_radio {
+	margin-left: 20px;
+}
+
+#info_radio > li:last-child{
+	margin-bottom: 10px;
+}
+
+#info_radio > li > label > input {
+	margin-top: 10px;
+}
+
+.order_title {
+	margin-top: 5px;
+	margin-left: 10px;
+	color: #E34244;
+}
+
+#info_order {
+	margin-top: 25px;
+}
+
+#info_order > li {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#info_order > li > input {
+	height: 30px;
+	width: 345px;
+	font: 17px sans-serif;
+	margin-left: 100px;
+	border-left: 1px solid #ABABAB;
+	border-top: 1px solid #ABABAB;
+	margin-right: 1px solid #DDD;
+	margin-bottom: 1px solid #DDD;
+	padding-left: 5px;
+}
+
+.title_info_order {
+	color: #E34244;
+	margin-left: 10px;
+}
+
+#info_order > li > input:focus, #info_order > li > textarea:focus {
+	border: 1px solid #C4E1EB;
+}
+
+#info_order > li > textarea {
+	height: 110px;
+	width: 346px;
+	margin-left: 100px;
+	border-left: 1px solid #ABABAB;
+	border-top: 1px solid #ABABAB;
+	margin-right: 1px solid #DDD;
+	margin-bottom: 1px solid #DDD;
+}
+
+#info_order > li > label {
+	font: 14px arial;
+	color: #464648;
+	position: absolute;
+	margin-top: 7px;
+}
+
+#info_order > li > span {
+	font: italic 13px sans-serif;
+	color: #A7A7A7;
+	margin-left: 15px;
+	margin-top: -1px;
+	position: absolute;
+}
+
+#info_order > li > span.order_span_style {
+	margin-top: 7px;
+}
+
+#info_order h3 {
+	font: bold 18px sans-serif;
+}
+
+#confirm_button_next {
+	border: 1px solid #B0C181;
+	font: 15px sans-serif;
+	color: white;
+	padding: 6px 22px;
+	text-decoration: none;
+	background-color: #00d12d;
+	border-radius: 20px;
+	margin-right: 20px;
+}
+
+#confirm_button_next:hover {
+	background-color: #00ff55;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	cursor: pointer;
+}
+
+#info_list {
+	margin-top: 20px;
+	margin-left: 100px;
+	width: 800px;
+	height: 200px;
+	padding-top: 25px;
+	padding-left: 20px;
+	background: url(/images/boxshadow.png) no-repeat;
+}
+
+#info_list > li {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-family: 'Suez One', serif;
+	font-size: 17px;
+	padding-left: 15px;
+}
+
+#info_list > li > strong {
+	font-family: 'Suez One', serif;
+	margin-right: 10px;
+}
+
+.end_title {
+	color: #E34244;
+	font-size: 25px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#confirm_button_pay {
+	border: 1px solid #B0C181;
+	font: 15px sans-serif;
+	color: white;
+	padding: 6px 22px;
+	text-decoration: none;
+	background-color: #00d12d;
+	border-radius: 20px;
+	margin-right: 20px;
+}
+
+#confirm_button_pay:hover {
+	background-color: #00ff55;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	cursor: pointer;
+}
+
+.itog_price2 {
+	padding-right: 20px;
+	padding-top: 50px;
+	font-size: 20px;
+	font-family: 'Suez One', serif;
+	margin-bottom: 10px;
 }

@@ -116,7 +116,7 @@ class showContents{
 			 			<li><i class="material-icons">comment</i><p>0</p></li>
 			 		</ul>
 
-			 		<a class="add_basket" title="В корзину"></a>
+			 		<a class="add_basket" title="В корзину" tid="'.$row['id'].'" ></a>
 			 		<p class="block_price_grid"><strong>'.$row['price'].'</strong> грн.</p>
 			 		<div class="block_mini_features_grid">'.$row['mini_features'].'
 			 		</div>
@@ -281,7 +281,7 @@ class showContentsList{
 
 			 		<p class="block_name_list"><a href="#">'.$row['name'].'</a></p>
 
-			 		<a class="add_basket_list" title="В корзину"></a>
+			 		<a class="add_basket_list" title="В корзину" tid="'.$row['id'].'" ></a>
 			 		<p class="block_price_list"><strong>'.$row['price'].'</strong> грн.</p>
 			 		<div class="block_mini_features_list">'.$row['mini_description'].'
 			 		</div>
