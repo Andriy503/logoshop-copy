@@ -187,7 +187,7 @@
 				echo '
 					<ul id="info_list">
 						<li><strong>Спосіб доставки: </strong>'.$_SESSION['order_delivery'].'</li>
-						<li><strong>ФІО: </strong>'.$_SESSION['auth_name'].' '.$_SESSION['auth_surname'].'</li>
+						<li><strong>ПІБ: </strong>'.$_SESSION['auth_name'].' '.$_SESSION['auth_surname'].'</li>
 						<li><strong>Номер телефону: </strong>'.$_SESSION['auth_phone'].'</li>
 						<li><strong>Адрес доставки: </strong>'.$_SESSION['auth_address'].'</li>
 						<li><strong>Додаток: </strong>'.$_SESSION['order_note'].'</li>
@@ -197,7 +197,7 @@
 				echo '
 					<ul id="info_list">
 						<li><strong>Спосіб доставки: </strong>'.$_SESSION['order_delivery'].'</li>
-						<li><strong>ФІО: </strong>'.$_SESSION['order_fio'].'</li>
+						<li><strong>ПІБ: </strong>'.$_SESSION['order_fio'].'</li>
 						<li><strong>Номер телефону: </strong>'.$_SESSION['order_phone'].'</li>
 						<li><strong>Адрес доставки: </strong>'.$_SESSION['order_address'].'</li>
 						<li><strong>Додаток: </strong>'.$_SESSION['order_note'].'</li>
