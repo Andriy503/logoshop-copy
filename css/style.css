@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Suez+One');
+
 nav > a > i {
 	position: absolute;
 	margin-left: -25px;
@@ -235,4 +237,95 @@ li {
 
 .order_delivery {
 	color: red;
+}
+
+/*feedback*/
+.title_feedback {
+	color: #4f4949;
+	font-size: 35px;
+	font-family: 'Roboto Slab', serif;
+	margin-left: 100px;
+	margin-top: 10px;
+}
+
+.back_feed {
+	height: 90px;
+	background-color: #20B1AA;
+}
+
+.mini_bg_feed {
+	height: 10px;
+	background-color: #4f4949;
+}
+
+.cont_us_feed {
+	color: #EC6550;
+	font-size: 30px;
+	font-family: 'Roboto Slab', serif;
+	border-bottom: 1px dashed  #4f4949;
+}
+
+.main_form_feed {
+	background-color: #939393;
+	padding: 5px;
+	height: 450px;
+}
+
+.textarea_feed {
+    width: 400px;
+    height: 200px;
+    resize: none;
+    padding: 5px;
+}
+
+
+#form_feedback > label > input{
+	padding: 10px;
+	width: 400px;
+	margin-top: 10px;
+	color: blue;
+	font-size: 14px;
+}
+
+#form_feedback > label > textarea {
+	margin-top: 10px;
+}
+
+.send_feedback {
+	border: 1px solid black;
+	padding: 5px 30px;
+	background-color: #ec6550;
+	font-size: 12px;
+	font-family: 'Roboto Slab', serif;
+	float: right;
+	margin-right: 20px;
+}
+
+.send_feedback:hover {
+	background-color: #e5442b;
+	cursor: pointer;
+}
+
+.success {
+	display: none;
+	height: 50px;
+	background-color: green;
+}
+
+.success > h2 {
+	font-size: 33px;
+	font-family: 'Roboto Slab', serif;
+	text-align: center;	
+}
+
+.error_feedback {
+	display: none;
+	height: 50px;
+	background-color: red;
+}
+
+.error_feedback > h2{
+	font-size: 33px;
+	font-family: 'Roboto Slab', serif;
+	text-align: center;		
 }

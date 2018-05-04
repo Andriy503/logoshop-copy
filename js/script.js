@@ -241,6 +241,72 @@ $(document).ready(function () {
 		});
 	}
 
-});
+	$("#form_feedback").validate({
+		rules: {
+			name_feedback: {
+				required: true,
+				minlength: 2,
+				maxlength: 40
+			},
+			surname_feedback: {
+				required: true,
+				minlength: 2,
+				maxlength: 40
+			},
+			topic_feedback: {
+				minlength: 2,
+				maxlength: 200
+			},
+			textarea_feed: {
+				required: true,
+				minlength: 5,
+				maxlength: 700
+			}
+		},
+		messages: {
+			name_feedback: {
+				required: "<span class='order_delivery'>Заповніть поле</span>",
+				maxlength: "<span class='order_delivery'>Поле задовге</span>",
+				minlength: "<span class='order_delivery'>Поле закоротке</span>"
+			},
+			surname_feedback: {
+				required: "<span class='order_delivery'>Заповніть поле</span>",
+				maxlength: "<span class='order_delivery'>Поле задовге</span>",
+				minlength: "<span class='order_delivery'>Поле закоротке</span>"
+			},
+			topic_feedback: {
+				maxlength: "<span class='order_delivery'>Поле задовге</span>",
+				minlength: "<span class='order_delivery'>Поле закоротке</span>"
+			},
+			textarea_feed: {
+				required: "<span class='order_delivery'>Заповніть поле</span>",
+				maxlength: "<span class='order_delivery'>Поле задовге</span>",
+				minlength: "<span class='order_delivery'>Поле закоротке</span>"
+			}
+		}
+	});
 
-// <i class="large material-icons">shopping_cart</i>
+	$(".send_feedback").click(function() {
+		var 
+			name_feedback = $("#name_feedback").val(),
+			surname_feedback = $("#surname_feedback").val(),
+			topic_feedback = $("#topic_feedback").val(),
+			textarea_feed = $("#textarea_feed").val();
+		$.ajax({
+			type: "POST",
+			url: "include/functions/api_feedback.php",
+			data: {"name_feedback": name_feedback, "surname_feedback": surname_feedback, "topic_feedback": topic_feedback, "textarea_feed": textarea_feed},
+			success: function(data) {
+				if(data == "true"){
+					$(".main_form_feed").slideUp(1000);
+					$(".success").slideDown(1000);
+				}
+				if(data == "false"){
+					$(".main_form_feed").slideUp(1000);
+					$(".error_feedback").slideDown(1000);
+				}
+			}
+		});
+	});
+
+});
