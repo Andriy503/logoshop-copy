@@ -2,7 +2,7 @@
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$search = trim(strtolower($_POST['text']));
 		
-		$connect = new PDO("mysql:host=localhost;dbname=db_logoshop", "root", "");
+		$connect = new PDO("mysql:host=mysql.zzz.com.ua;dbname=siko503", "siko503", "Sikosikosiko123");
 		$query = $connect->prepare( " SELECT * FROM `tovary` WHERE `name` LIKE '%$search%' AND `visible` = 1 " );
 		$query->execute();
 

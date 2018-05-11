@@ -6,7 +6,7 @@
 	$phone = trim($_POST['phone']);
 	$adress = trim($_POST['adress']);
 
-	$connect = new PDO("mysql:host=localhost;dbname=db_logoshop", "root", "");
+	$connect = new PDO("mysql:host=mysql.zzz.com.ua;dbname=siko503", "siko503", "Sikosikosiko123");
 	$sql = $connect->prepare(' UPDATE `users` SET `login` = "'.$login.'", `name` = "'.$name.'", `surname` = "'.$surname.'", `phone` = "'.$phone.'", `address` = "'.$adress.'" WHERE `login` = "'.$_SESSION['auth_login'].'" ');
 	$sql->execute();
 

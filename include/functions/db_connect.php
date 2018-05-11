@@ -12,7 +12,7 @@
 		}
 
 		function connect_db() {
-			Connect::$connect = new PDO("mysql:host=localhost;dbname=db_logoshop", "root", "");
+			Connect::$connect = new PDO("mysql:host=mysql.zzz.com.ua;dbname=siko503", "siko503", "Sikosikosiko123");
 			if(Connect::$connect){
 			}else {
 				echo "Неможливо підлючитись до БД, будь ласка перевірте з'єднання";

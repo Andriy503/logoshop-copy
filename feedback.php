@@ -104,6 +104,7 @@
 	<script type="text/javascript" src="js/library/jquery.form.js"></script>
 	<script type="text/javascript" src="js/library/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/library/textchange.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 	
 </head>
 <body>
@@ -123,26 +124,34 @@
 					<h2 class="title_feedback">Зворотній зв'язок</h2>	
 				</div>
 
-				<div class="success">
-					<h2>Повідомлення відправлено!</h2>
+				<div class="message_feedback">
+					<center><span class="text_feed">Заповніть коректно форму!</span></center>
 				</div>
 
-				<div class="error_feedback">
-					<h2>Помилка! Дані введено не коректно!</h2>
+<!--  -->
+				<div class="popup" data-popup="popup-1">
+					<div class="popup-inner">
+						<h2>Добрий день! Ваша заявка відправлена! ;)</h2>
+							<p>Буде розглянута найближчим часом! Інформація про дану заявку ви зможете переглянути по електроній пошті на яку буде відправленно SMS-повідомлення! <strong>Гарного дня козаче!</strong>.</p>
+							<p><a data-popup-close="popup-1" href="#" class="two_close_feedback">Close</a></p>
+						<a class="popup-close" data-popup-close="popup-1" id="close_feedback" href="#">x</a>
+					</div>
 				</div>
+<!--  -->
+
+
 
 				<div class="main_form_feed">
-					
 					<h2 class="cont_us_feed">Contact us</h2>
 
 					<form method="POST" id="form_feedback">
-						<label>Ваше Ім'я: <input type="text" name="name_feedback" id="name_feedback"></label><br>
-						<label>e-mail: <input type="text" name="surname_feedback" id="surname_feedback"></label><br>
-						<label>Тема: <input type="text" name="topic_feedback" id="topic_feedback"></label><br>
-						<label>Текст повідомлення: <textarea class="textarea_feed" name="textarea_feed" id="textarea_feed"></textarea></label><br>
-
-						<input type="submit" name="send" value="Відправити" class="send_feedback">
+						<label>Ваше Ім'я: <input type="text" name="name_feedback" id="name_feedback" placeholder="не менше 3 символів..."></label><br>
+						<label>e-mail: <input type="text" name="surname_feedback" id="surname_feedback" placeholder="введіть e-mail..."></label><br>
+						<label>Тема: <input type="text" name="topic_feedback" id="topic_feedback" placeholder="введыть тему..."></label><br>
+						<label>Текст повідомлення: <textarea class="textarea_feed" name="textarea_feed" id="textarea_feed" placeholder="не менше 5 символів..."></textarea></label><br>
 					</form>
+
+					<input type="submit" data-popup-open="popup-1" name="send" value="Відправити" class="send_feedback">
 				</div>
 				
 			</div>

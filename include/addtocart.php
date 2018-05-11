@@ -1,7 +1,7 @@
 <?php 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$id = $_POST['id'];
-		$connect_basket = new PDO("mysql:host=localhost;dbname=db_logoshop", "root", "");
+		$connect_basket = new PDO("mysql:host=mysql.zzz.com.ua;dbname=siko503", "siko503", "Sikosikosiko123");
 
 
 		$query_basket = $connect_basket->prepare("SELECT * FROM `basket` WHERE `ip_user` = '".$_SERVER['REMOTE_ADDR']."' AND `id_tovary` = '".$id."' ");

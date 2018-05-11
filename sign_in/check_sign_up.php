@@ -8,7 +8,7 @@
 
 	$ip = $_SERVER['REMOTE_ADDR'];
 
-	$connect = new PDO("mysql:host=localhost;dbname=db_logoshop", "root", "");
+	$connect = new PDO("mysql:host=mysql.zzz.com.ua;dbname=siko503", "siko503", "Sikosikosiko123");
 	$sql = $connect->prepare(" INSERT INTO `users` (`login`, `password`, `name`, `surname`, `phone`, `address`, `datetime`, `ip`) VALUES ('".$login."', '".$password."', '".$name."', '".$surname."', ".$phone.", '".$adress."', NOW(), '".$ip."' ) ");
 	$sql->execute();
 

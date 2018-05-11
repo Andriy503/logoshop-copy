@@ -1,7 +1,7 @@
 <?php 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 
-		$connect_basket_test = new PDO("mysql:host=localhost;dbname=db_logoshop", "root", "");
+		$connect_basket_test = new PDO("mysql:host=mysql.zzz.com.ua;dbname=siko503", "siko503", "Sikosikosiko123");
 		$query_basket_test = $connect_basket_test->prepare(  "SELECT * FROM basket, tovary WHERE basket.ip_user = '".$_SERVER['REMOTE_ADDR']."' AND tovary.id = basket.id_tovary" );
 		$query_basket_test->execute();
 		$num_rows_basket = $query_basket_test->rowCount();

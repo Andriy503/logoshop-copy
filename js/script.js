@@ -103,7 +103,7 @@ $(document).ready(function () {
 	});
 	
 	$(".setting").click(function() {
-		window.location.replace("http://logoshop.ua/setting.php");
+		window.location.replace("http://logoshop.zzz.com.ua/setting.php");
 	});
 
 	$(".delete_cart").click(function() {
@@ -241,72 +241,80 @@ $(document).ready(function () {
 		});
 	}
 
-	$("#form_feedback").validate({
-		rules: {
-			name_feedback: {
-				required: true,
-				minlength: 2,
-				maxlength: 40
-			},
-			surname_feedback: {
-				required: true,
-				minlength: 2,
-				maxlength: 40
-			},
-			topic_feedback: {
-				minlength: 2,
-				maxlength: 200
-			},
-			textarea_feed: {
-				required: true,
-				minlength: 5,
-				maxlength: 700
-			}
-		},
-		messages: {
-			name_feedback: {
-				required: "<span class='order_delivery'>Заповніть поле</span>",
-				maxlength: "<span class='order_delivery'>Поле задовге</span>",
-				minlength: "<span class='order_delivery'>Поле закоротке</span>"
-			},
-			surname_feedback: {
-				required: "<span class='order_delivery'>Заповніть поле</span>",
-				maxlength: "<span class='order_delivery'>Поле задовге</span>",
-				minlength: "<span class='order_delivery'>Поле закоротке</span>"
-			},
-			topic_feedback: {
-				maxlength: "<span class='order_delivery'>Поле задовге</span>",
-				minlength: "<span class='order_delivery'>Поле закоротке</span>"
-			},
-			textarea_feed: {
-				required: "<span class='order_delivery'>Заповніть поле</span>",
-				maxlength: "<span class='order_delivery'>Поле задовге</span>",
-				minlength: "<span class='order_delivery'>Поле закоротке</span>"
-			}
-		}
-	});
-
 	$(".send_feedback").click(function() {
 		var 
 			name_feedback = $("#name_feedback").val(),
 			surname_feedback = $("#surname_feedback").val(),
+			textarea_feed = $("#textarea_feed").val();
+
+		if(name_feedback != "" && surname_feedback != "" && textarea_feed != ""){
+			if((name_feedback.length < 3) || (surname_feedback.length < 3) || (textarea_feed.length < 5)){
+				$(".message_feedback").fadeIn(1000);
+				return;
+			}
+			
+			$(".message_feedback").hide();
+			var targeted_popup_class = jQuery(this).attr('data-popup-open');
+			$('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+
+		} else {
+			$(".message_feedback").fadeIn(1000);
+			return;
+		}
+	});
+
+
+	// CLOSE
+	$("#close_feedback").click(function() {
+		var name_feedback = $("#name_feedback").val(),
+			surname_feedback = $("#surname_feedback").val(),
 			topic_feedback = $("#topic_feedback").val(),
 			textarea_feed = $("#textarea_feed").val();
+		// write file or db
 		$.ajax({
 			type: "POST",
-			url: "include/functions/api_feedback.php",
-			data: {"name_feedback": name_feedback, "surname_feedback": surname_feedback, "topic_feedback": topic_feedback, "textarea_feed": textarea_feed},
-			success: function(data) {
-				if(data == "true"){
-					$(".main_form_feed").slideUp(1000);
-					$(".success").slideDown(1000);
-				}
-				if(data == "false"){
-					$(".main_form_feed").slideUp(1000);
-					$(".error_feedback").slideDown(1000);
-				}
-			}
+			url: "/include/functions/write_data_user_feedback.php",
+			data: { "name_feedback": name_feedback, "surname_feedback": surname_feedback,  "topic_feedback": topic_feedback, "textarea_feed": textarea_feed },
+			dataType: "html",
+			cache: false,
+			// success: function(data) {
+			// 	if(data == "true"){
+			// 		location.reload();
+			// 	}
+			// }
 		});
+		
+
+		var targeted_popup_class = jQuery(this).attr('data-popup-close');
+		$('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+
+	});
+
+	$(".two_close_feedback").click(function() {
+		var name_feedback = $("#name_feedback").val(),
+			surname_feedback = $("#surname_feedback").val(),
+			topic_feedback = $("#topic_feedback").val(),
+			textarea_feed = $("#textarea_feed").val();
+		// write file or db
+		$.ajax({
+			type: "POST",
+			url: "/include/functions/write_data_user_feedback.php",
+			data: { "name_feedback": name_feedback, "surname_feedback": surname_feedback,  "topic_feedback": topic_feedback, "textarea_feed": textarea_feed },
+			dataType: "html",
+			cache: false,
+			// success: function(data) {
+			// 	if(data == "true"){
+			// 		window.location.replace("http://logoshop.ua/");
+			// 	}
+			// }
+		});
+
+		var targeted_popup_class = jQuery(this).attr('data-popup-close');
+		$('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+	});
+
+	$("#confirm_button_pay").click(function() {
+		alert("З вами зв'яжуться!")
 	});
 
 });
